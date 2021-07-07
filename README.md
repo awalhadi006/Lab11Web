@@ -944,3 +944,35 @@ Selesaikan programnya sesuai Langkah-langkah yang ada. Anda boleh melakukan impr
  <h3>Jawaban</h3>
 Program sudah lengkap dan dapat berjalan dengan semestinya.
 
+# Praktikum 14
+<h1> Langkah-langkah Praktikum </h1>
+<p>
+<ol>
+  <li><b>Membuat Pagination</b></br>
+  Pagination merupakan proses yang digunakan untuk membatasi tampilan yang panjang dari data yang banyak pada sebuah website. Fungsi pagination adalah memecah tampilan menjadi beberapa halaman tergantung banyaknya data yang akan ditampilkan pada setiap halaman.
+  Pada Codeigniter 4, fungsi pagination sudah tersedia pada Library sehingga cukup mudah menggunakannya.
+  Untuk membuat pagination, buka kembali <b>Controller Artikel</b>, kemudian modifikasi kode pada method <b>admin_index</b> seperti berikut.
+  
+```php
+    public function admin_index() 
+    {
+        $title = 'Daftar Artikel';
+        $model = new ArtikelModel();
+        $data = [
+            'title'   => $title,
+            'artikel' => $model->paginate(10), #data dibatasi 10 record per
+halaman
+            'pager'   => $model->pager,
+        ];
+        return view('artikel/admin_index', $data);
+    } 
+```
+
+Kemudian buka file <b>views/artikel/admin_index.php</b> dan tambahkan kode berikut dibawah deklarasi tabel data.
+
+```php
+<?= $pager->links(); ?>
+```
+
+Selanjutnya buka kembali menu daftar artikel, tambahkan data lagi untuk melihat hasilnya.
+
