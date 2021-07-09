@@ -1017,3 +1017,51 @@ Dan pada link pager ubah seperti berikut.
 Selanjutnya ujicoba dengan membuka kembali halaman admin artikel, masukkan kata kunci tertentu pada form pencarian.
 
 ![Screenshot_365](https://user-images.githubusercontent.com/24362384/125093943-09299580-e0fd-11eb-86e4-7515254b4e9e.png)
+
+<li><b>Upload Gambar</b></br>
+Menambahkan fungsi unggah gambar pada tambah artikel. Buka kembali <b>Controller Artikel,</b> sesuaikan kode pada method <b>add</b> seperti berikut.
+
+```php
+   public function add() 
+    {
+        // validasi data.
+        $validation =  \Config\Services::validation();
+        $validation->setRules(['judul' => 'required']);
+        $isDataValid = $validation->withRequest($this->request)->run(); 
+        
+        if ($isDataValid)
+        {
+            $file = $this->request->getFile('gambar');
+            $file->move(ROOTPATH . 'public/gambar');
+
+            $artikel = new ArtikelModel();
+            $artikel->insert([
+                'judul'  => $this->request->getPost('judul'),
+                'isi'    => $this->request->getPost('isi'),
+                'slug'   => url_title($this->request->getPost('judul')),
+                'gambar' => $file->getName(),
+            ]);
+            return redirect('admin/artikel');
+        }
+        $title = "Tambah Artikel";
+        return view('artikel/form_add', compact('title'));
+    } 
+```
+
+Kemudian pada file <b>views/artikel/form_add.php</b> tambahkan field input file seperti berikut.
+
+```html
+    <p>
+        <input type="file" name="gambar">
+    </p> 
+```
+
+![Screenshot_366](https://user-images.githubusercontent.com/24362384/125095855-cb2d7100-e0fe-11eb-9df9-4168f7a76a31.png)
+
+</li>
+</ol>
+
+  <h3>Pertanyaan dan Tugas</h3>
+Selesaikan programnya sesuai langkah-langkah yang ada. Anda boleh melakukan improvisasi.</br>
+ 
+ <h3>Jawaban</h3>
