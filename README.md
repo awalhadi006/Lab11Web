@@ -976,3 +976,44 @@ Kemudian buka file <b>views/artikel/admin_index.php</b> dan tambahkan kode berik
 
 Selanjutnya buka kembali menu daftar artikel, tambahkan data lagi untuk melihat hasilnya.
 
+![Screenshot_364](https://user-images.githubusercontent.com/24362384/125093460-81dc2200-e0fc-11eb-9a33-b8bbb0ac42eb.png)
+
+<li><b>Membuat Pencarian</b></br>
+Pencarian data digunakan untuk memfilter data.</br></br>
+Untuk membuat pencarian data, buka kembali <b>Controller Artikel,</b> pada method <b>admin_index</b> ubah kodenya seperti berikut.
+
+```php
+    public function admin_index() 
+    {
+        $title = 'Daftar Artikel';
+        $q = $this->request->getVar('q') ?? '';
+        $model = new ArtikelModel();
+        $data = [
+            'title'   => $title,
+            'q'       => $q,
+            'artikel' => $model->like('judul', $q)->paginate(10), # data
+dibatasi 10 record per halaman
+            'pager'   => $model->pager,
+        ];
+        return view('artikel/admin_index', $data);
+    } 
+```
+
+Kemudian buka kembali file <b>views/artikel/admin_index.php</b> dan tambahkan form pencarian sebelum deklarasi tabel seperti berikut.
+
+```php
+<form method="get" class="form-search">
+    <input type="text" name="q" value="<?= $q; ?>" placeholder="Cari data">
+    <input type="submit" value="Cari" class="btn btn-primary">
+</form>
+```
+
+Dan pada link pager ubah seperti berikut.
+
+```php
+<?= $pager->only(['q'])->links(); ?>
+```
+
+Selanjutnya ujicoba dengan membuka kembali halaman admin artikel, masukkan kata kunci tertentu pada form pencarian.
+
+![Screenshot_365](https://user-images.githubusercontent.com/24362384/125093943-09299580-e0fd-11eb-86e4-7515254b4e9e.png)
