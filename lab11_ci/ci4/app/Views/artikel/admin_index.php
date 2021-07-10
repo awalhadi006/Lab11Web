@@ -6,6 +6,14 @@
         <a href="<?= base_url('/admin/artikel/add');?>">Tambah Artikel</a>
 
     </nav>
+
+    <section class="size-form">
+<form method="get" class="form-search">
+    <input type="text" name="q" value="<?= $q; ?>" placeholder="Cari data">
+    <input type="submit" value="Cari" class="btn-primary">
+</form>
+</section>
+
     <section id="wrapper">
         <section id="main"> 
 
@@ -28,10 +36,8 @@
  </td>
  <td><?= $row['status']; ?></td>
  <td>
- <a class="btn" href="<?= base_url('/admin/artikel/edit/' .
-$row['id']);?>">Ubah</a>
- <a class="btn btn-danger" onclick="return confirm('Yakin menghapus data?');" href="<?= base_url('/admin/artikel/delete/' .
-$row['id']);?>">Hapus</a>
+ <a class="btn" href="<?= base_url('/admin/artikel/edit/' . $row['id']);?>">Ubah</a>
+ <a class="btn btn-danger" onclick="return confirm('Yakin menghapus data?');" href="<?= base_url('/admin/artikel/delete/' . $row['id']);?>">Hapus</a>
  </td>
  </tr>
  <?php endforeach; else: ?>
@@ -49,4 +55,7 @@ $row['id']);?>">Hapus</a>
  </tr>
  </tfoot>
 </table>
+
+<?= $pager->only(['q'])->links('bootstrap', 'bootstrap_pagination'); ?>
+
 <?= $this->include('template/admin_footer'); ?>

@@ -25,7 +25,7 @@ class User extends BaseController
         $password = $this->request->getPost('password');
         if (!$email)
         {
-            return view('user/login');
+            return view('/user/login');
         }
 
         $session = session();

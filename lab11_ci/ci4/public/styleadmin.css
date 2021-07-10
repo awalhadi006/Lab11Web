@@ -21,6 +21,9 @@ body {
     box-shadow: 0 0 1em #cccccc;
 }
 
+#size-form {
+    width: 200px;
+}
 /* header */
 header {
     padding: 20px;
@@ -46,6 +49,25 @@ nav a {
 nav a.active,
 nav a:hover {
     background-color: #2b83ea;
+}
+
+.nav2 {
+    background-color: #ffffff;
+    padding-left: 20px;
+    padding-bottom: 35px;
+}
+
+.nav2 a {
+    padding: 10px 15px;
+    display: inline-block;
+    color: #ffffff;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.nav2 a.active,
+.nav2 a:hover {
+    background-color: #d3dde9;
 }
 
 /* Hero Panel */
@@ -281,7 +303,7 @@ table th {
     font-size: 17px;
     text-align: left;
     border: 1px solid #c9c9c9;
-    padding: 13px 5px;
+    padding: 8px 5px;
 }
 table tr {
     background:#ffffff;
@@ -318,7 +340,7 @@ a:hover{
 
 /* TAMBAH ARTIKEL */
 textarea{
-    width: 94%;
+    width: 75%;
     padding: 10px;
     border: 2px solid gray;
     box-sizing: border-box;
@@ -327,7 +349,7 @@ textarea{
 }
 
 input[type=text]{
-    width: 94%;
+    width: 75%;
     padding: 10px;
     border: 2px solid gray;
     box-sizing: border-box;
@@ -336,12 +358,13 @@ input[type=text]{
 }
 
 input[type=submit]{
-    padding: 10px;
     background-color: rgb(30, 117, 216);
     color: white;
     box-sizing: border-box;
     font-size: 15px;
-    margin: 20px;   
+    margin-left: 20px;
+    margin-bottom: 70px;
+    border: none;
 }
 
 input[type=submit]:active,
@@ -349,7 +372,68 @@ input[type=submit]:hover{
     opacity: 80%;
 }
 
+input[type=file]{
+    padding: 10px;
+    margin: 10px;
+}
 h2{
     margin-top: 20px;
     margin-left: 20px;
+}
+
+.pagination{
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    padding-left:0;
+    list-style:none;
+    border-radius:.25rem;
+}
+
+.page-item.active .page-link{
+    z-index:1;color:#fff;
+    background-color:#007bff;
+    border-color:#007bff
+}
+
+.page-item .page-link {
+    z-index:1;
+    color:rgb(255, 255, 255);
+    background-color:#b3b3b3;
+    border-color:#ffffff
+}
+
+.page-item {
+    padding-right: 10px;
+}
+
+/*.form-search {
+    width: 200px;
+}
+
+.btn-primary{
+    width: 65px;
+    float: right;
+}
+*/
+
+.form-search input[type=text]{
+    width: 200px;
+    height: 35px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    margin-right: 0;
+    margin-top: 40px;
+    border-width: 1px;
+
+}
+
+.form-search input[type=submit]{
+    background-color: rgb(30, 117, 216);   
+    height: 35px;
+    width: 50px;
+    border-radius: 5px;
+    border: none;
+    margin-left: 2px;
+
 }
